@@ -60,8 +60,8 @@
 
     <SeekBar
         android:id="@+id/volumeSeekBar"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_width="157dp"
+        android:layout_height="45dp"
         android:max="50"
         android:layout_marginStart="16dp"
         tools:layout_constraintTop_creator="1"
@@ -72,7 +72,8 @@
         android:layout_marginBottom="58dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/playTetris"

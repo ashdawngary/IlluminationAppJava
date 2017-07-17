@@ -18,7 +18,15 @@ public class MainScreenGood extends AppCompatActivity {
         final Intent tasklistIntent = new Intent(this,TaskList.class);
         final Intent contactIntent = new Intent(this,Contact.class);
         final Intent musicIntent = new Intent(this,Music_Activity.class);
-        Button musicbutton = (Button) findViewById(R.id.musicButton);
+        final Intent animalVideos = new Intent(this,AnimalVideos.class);
+        Button animalsButton = (Button) findViewById(R.id.animalVideosButton);
+        animalsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(animalVideos);
+            }
+            });
+                Button musicbutton = (Button) findViewById(R.id.musicButton);
         musicbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

@@ -23,7 +23,9 @@ public class Music_Activity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
 
                 System.out.println("New Volume: "+progress);
-                setVolume(progress);
+                if (mediaPlayer != null) {
+                    setVolume(progress);
+                }
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
