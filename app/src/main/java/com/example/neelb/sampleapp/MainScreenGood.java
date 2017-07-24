@@ -15,7 +15,7 @@ public class MainScreenGood extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen_good);
         final Intent noticeIntent = new Intent(this,Notice.class);
         final Intent storiesIntent = new Intent(this,Stories.class);
-        final Intent tasklistIntent = new Intent(this,TaskList.class);
+        final Intent tasklistIntent = new Intent(this,GPSActivity.class);
         final Intent contactIntent = new Intent(this,Contact.class);
         final Intent musicIntent = new Intent(this,Music_Activity.class);
         final Intent animalVideos = new Intent(this,AnimalVideos.class);
