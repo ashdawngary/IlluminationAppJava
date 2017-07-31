@@ -31,6 +31,7 @@ public class Mainscreenactivity extends AppCompatActivity {
     EditText name;
     TextView WelcomeName;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(R.drawable.notificationicon);//Get an image in R.drawable and insert it here pls.
@@ -42,6 +43,7 @@ public class Mainscreenactivity extends AppCompatActivity {
         stackBuilder.addNextIntent(ifYouClick);
         String myname = readFromFile(this,"user_name.txt");
 
+        final Intent myIntentX = new Intent(this,FirstMeetUp.class);
 
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
@@ -51,9 +53,12 @@ public class Mainscreenactivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         WelcomeName = (TextView) findViewById(R.id.WelcomeMessage);
         name = (EditText) findViewById(R.id.NameField);
-        if(myname!=""){
+        if(!myname.equals("")){
             name.setText(myname);
             WelcomeName.setText("Welcome, "+myname);
+        }
+        else {
+            startActivity(myIntentX);
         }
         Button goodDay = (Button) findViewById(R.id.goodDay);
         final Intent myIntent = new Intent(this,MainScreenGood.class);
@@ -67,18 +72,40 @@ public class Mainscreenactivity extends AppCompatActivity {
                     String personName = name.getText().toString();
                     WelcomeName.setText("Welcome, "+personName);
                     writeToFile(personName,"user_name.txt",mycontext);
+                    Log.i("MainScreen","name is <"+personName+">"+personName.length());
+                    if(personName.length() > 0 && !personName.equals("Enter A Name!") && satisfactoryName(personName)){
+                        name.setText(personName);
+                        WelcomeName.setText("Welcome, "+personName);
+                        startActivity(myIntent);
+                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        mNotificationManager.notify(2, mBuilder.build());
+                    }
+                    else {
+                        writeToFile("","user_name.txt",mycontext);
+                        Log.i("MainScreen","Booting up first-meet-screen");
+                        startActivity(myIntentX);
+                    }
+
                     //if(readFromFile(mycontext,"color.txt") == ""){
                     //    startActivity(pickaColor);
                     //}
                     //else{
                     //    Log.i("MainScreen",readFromFile(mycontext,"color.txt"));
                    // }
-                    startActivity(myIntent);
-                    NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    mNotificationManager.notify(2, mBuilder.build());
+
                 }
         });
 
+    }
+    public boolean satisfactoryName(String name){
+        boolean flag = false;
+        String[] badNames = {"Name","name","no","bad","."};
+        for (int i = 0; i < badNames.length;i++){
+            if (name.contains(badNames[i])){
+                flag = true;
+            }
+        }
+        return !flag && name.length() > 1;
     }
     private void writeToFile(String data,String textfile,Context context) {
         try {
