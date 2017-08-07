@@ -1,10 +1,12 @@
 package com.example.neelb.sampleapp;
 
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 
 public class Music_Activity extends AppCompatActivity {
@@ -38,8 +40,9 @@ public class Music_Activity extends AppCompatActivity {
             }
 
         });
-        Button playjubilife = (Button) findViewById(R.id.jubilifeMusic);
-        playjubilife.setOnClickListener(new View.OnClickListener() {
+        ImageButton playjubilife_ = (ImageButton) findViewById(R.id.jubilifeRestart);
+        //Button playjubilife = (Button) findViewById(R.id.jubilifeMusic); Rip Playjubilife Button 8/7/17
+        playjubilife_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mediaPlayer != null){
@@ -50,9 +53,10 @@ public class Music_Activity extends AppCompatActivity {
 
             }
         });
-        Button playtetristhemea = (Button) findViewById(R.id.playTetris);
+        //Button playtetristhemea = (Button) findViewById(R.id.playTetris); RIP button 8/7/17
+        ImageButton playtetristhemea_ = (ImageButton) findViewById(R.id.tetrisRestart);
         //mediaPlayer = MediaPlayer.create(this, R.raw.tetristhemea);
-        playtetristhemea.setOnClickListener(new View.OnClickListener(){
+        playtetristhemea_.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 if (mediaPlayer != null){
@@ -62,15 +66,19 @@ public class Music_Activity extends AppCompatActivity {
                 startSong();
             }
         });
-        Button pausebutton = (Button) findViewById(R.id.musicpause);
-        pausebutton.setOnClickListener(new View.OnClickListener() {
+        final ImageButton pauseplay = (ImageButton) findViewById(R.id.playpause);
+        //final Button pausebutton = (Button) findViewById(R.id.musicpause); RIp Pause button 8/7/17
+        pauseplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
-                }
-                else{
-                    mediaPlayer.start();
+                if(mediaPlayer != null) {
+                    if (mediaPlayer.isPlaying()) {
+                        mediaPlayer.pause();
+                        pauseplay.setImageResource(R.drawable.playbutton);
+                    } else {
+                        mediaPlayer.start();
+                        pauseplay.setImageResource(R.drawable.pause);
+                    }
                 }
 
             }

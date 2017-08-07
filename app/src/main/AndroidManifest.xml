@@ -34,7 +34,9 @@
         <activity android:name=".AnimalVideos" />
         <activity android:name=".favorite_color_picker" />
         <activity android:name=".GPSActivity" />
-        <activity android:name=".FirstMeetUp"></activity>
+        <activity android:name=".FirstMeetUp" />
+        <activity android:name=".tasklist_selector" />
+        <activity android:name=".tasklistv2"></activity>
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -28,7 +29,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class Mainscreenactivity extends AppCompatActivity {
-    EditText name;
+    //EditText name;
     TextView WelcomeName;
     @Override
 
@@ -41,7 +42,7 @@ public class Mainscreenactivity extends AppCompatActivity {
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(Music_Activity.class);
         stackBuilder.addNextIntent(ifYouClick);
-        String myname = readFromFile(this,"user_name.txt");
+        final String myname = readFromFile(this,"user_name.txt");
 
         final Intent myIntentX = new Intent(this,FirstMeetUp.class);
 
@@ -52,29 +53,39 @@ public class Mainscreenactivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         WelcomeName = (TextView) findViewById(R.id.WelcomeMessage);
-        name = (EditText) findViewById(R.id.NameField);
+        //name = (EditText) findViewById(R.id.NameField);
         if(!myname.equals("")){
-            name.setText(myname);
+            //name.setText(myname);
             WelcomeName.setText("Welcome, "+myname);
         }
         else {
-            startActivity(myIntentX);
+            startActivity(myIntentX); // New Nameset Page
         }
-        Button goodDay = (Button) findViewById(R.id.goodDay);
         final Intent myIntent = new Intent(this,MainScreenGood.class);
         final Intent pickaColor = new Intent(this,favorite_color_picker.class);
         final Context mycontext = this;
-        goodDay.setOnClickListener(new View.OnClickListener(){
+        //Button goodDay = (Button) findViewById(R.id.goodDay); RIP OLD BUTTON 8/4/17
+        ImageButton goodDay2 = (ImageButton) findViewById(R.id.goodDayImage);
+        Button resetButton = (Button) findViewById(R.id.resetButton);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                writeToFile("","user_name.txt",mycontext);
+                startActivity(myIntentX);
+            }
+        });
+
+        goodDay2.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
                     // Write code to edit stuff
-                    System.out.println("Button was hit.");
-                    String personName = name.getText().toString();
+                    //System.out.println("Button was hit.");
+                    String personName = myname;
                     WelcomeName.setText("Welcome, "+personName);
                     writeToFile(personName,"user_name.txt",mycontext);
                     Log.i("MainScreen","name is <"+personName+">"+personName.length());
                     if(personName.length() > 0 && !personName.equals("Enter A Name!") && satisfactoryName(personName)){
-                        name.setText(personName);
+                        //name.setText(personName);
                         WelcomeName.setText("Welcome, "+personName);
                         startActivity(myIntent);
                         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

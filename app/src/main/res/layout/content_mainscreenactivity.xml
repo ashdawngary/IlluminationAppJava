@@ -1,78 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_mainscreenactivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.neelb.sampleapp.Mainscreenactivity"
-    tools:showIn="@layout/activity_mainscreenactivity">
+    tools:showIn="@layout/activity_mainscreenactivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome"
         android:textSize="50dp"
-        android:layout_marginTop="14dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/WelcomeMessage" />
+        android:id="@+id/WelcomeMessage"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Samplequestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/NameField"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="62dp"
-        android:text="How is Your Day?" />
-
-    <EditText
-        android:id="@+id/NameField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/WelcomeMessage"
-        android:layout_alignRight="@+id/WelcomeMessage"
-        android:layout_below="@+id/WelcomeMessage"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:hint="Enter your Name."
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:textAlignment="center" />
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="68dp"
+        android:text="How are you feeling?"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/WelcomeMessage"
+        app:layout_constraintTop_toBottomOf="@+id/WelcomeMessage"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <Button
-        android:id="@+id/badDay"
+        android:id="@+id/resetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/meDay"
-        android:layout_alignBottom="@+id/meDay"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Bad ;-;" />
+        android:text="Reset"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="35dp"
+        android:layout_marginRight="28dp" />
 
-    <Button
-        android:id="@+id/meDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Meh"
-        android:layout_alignBaseline="@+id/goodDay"
-        android:layout_alignBottom="@+id/goodDay"
-        android:layout_centerHorizontal="true" />
+    <ImageButton
+        android:id="@+id/goodDayImage"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="56dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:layout_constraintHorizontal_bias="0.017"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Samplequestion"
+        app:srcCompat="@drawable/thumbsup"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
-    <Button
-        android:id="@+id/goodDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="42dp"
-        android:text="Good!" />
+    <ImageButton
+        android:id="@+id/mehday"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/goodDayImage"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/goodDayImage"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/thumbsside"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
-</RelativeLayout>
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginStart="9dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/goodDayImage"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/goodDayImage"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/goodDayImage"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/thumbsdown"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+</android.support.constraint.ConstraintLayout>

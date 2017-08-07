@@ -1,6 +1,7 @@
 package com.example.neelb.sampleapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,12 @@ public class MainScreenGood extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(240,240,240));
         setContentView(R.layout.activity_main_screen_good);
         final Intent noticeIntent = new Intent(this,Notice.class);
         final Intent storiesIntent = new Intent(this,Stories.class);
-        final Intent tasklistIntent = new Intent(this,GPSActivity.class);
+        //final Intent tasklistIntent = new Intent(this,GPSActivity.class); replacing with tsklistintentv2 this is a feedbck thing
+        final Intent tasklistIntent = new Intent(this,tasklistv2.class);
         final Intent contactIntent = new Intent(this,Contact.class);
         final Intent musicIntent = new Intent(this,Music_Activity.class);
         final Intent animalVideos = new Intent(this,AnimalVideos.class);
@@ -41,6 +44,7 @@ public class MainScreenGood extends AppCompatActivity {
                 finish();
             }
         });
+        /*
         Button notice = (Button) findViewById(R.id.noticeButton);
         notice.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -48,6 +52,8 @@ public class MainScreenGood extends AppCompatActivity {
                 startActivity(noticeIntent);
             }
         });
+        */
+
         final Button stories = (Button) findViewById(R.id.storyButton);
         stories.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -62,6 +68,7 @@ public class MainScreenGood extends AppCompatActivity {
                 startActivity(tasklistIntent);
             }
         });
+        /*
         Button contactbutton = (Button) findViewById(R.id.contactButton);
         contactbutton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -69,5 +76,6 @@ public class MainScreenGood extends AppCompatActivity {
                 startActivity(contactIntent);
             }
         });
+        */
     }
 }
