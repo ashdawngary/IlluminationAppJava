@@ -111,4 +111,16 @@
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="@+id/textView20"
         android:layout_marginLeft="82dp" />
+
+    <Button
+        android:id="@+id/openQuoteSelector"
+        android:layout_width="190dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="-58dp"
+        android:layout_marginTop="9dp"
+        android:text="openquoteSelector"
+        app:layout_constraintLeft_toLeftOf="@+id/checkBox5"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox5"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
 </android.support.constraint.ConstraintLayout>

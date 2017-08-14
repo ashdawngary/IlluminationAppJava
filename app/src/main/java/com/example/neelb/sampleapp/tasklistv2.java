@@ -32,7 +32,14 @@ public class tasklistv2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasklistv2);
-
+        final Intent quoteSelector = new Intent(this,QuoteChooser.class);
+        Button qOpen = (Button) findViewById(R.id.openQuoteSelector); // Temp trigger Button
+        qOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(quoteSelector);
+            }
+        });
         chooseIntent = new Intent(this,tasklist_selector.class);
         checkbox1 = (CheckBox) findViewById(R.id.checkBox1);
         checkbox2 = (CheckBox) findViewById(R.id.checkBox2);

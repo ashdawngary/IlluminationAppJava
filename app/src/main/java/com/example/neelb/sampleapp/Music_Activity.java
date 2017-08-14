@@ -4,6 +4,7 @@ import android.media.Image;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -95,6 +96,17 @@ public class Music_Activity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    @Override
+    protected void onDestroy(){
+        if(mediaPlayer != null){
+            //  Shut down MediaPlayer
+            mediaPlayer.stop();
+            setVolume(0);
+            stopSong();
+            Log.i("MusicPlayer","onDestroy() cleanup");
+        }
+        super.onDestroy();
     }
     public void setVolume(int currVolume){
         /*

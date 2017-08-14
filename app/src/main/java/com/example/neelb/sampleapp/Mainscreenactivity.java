@@ -38,6 +38,10 @@ public class Mainscreenactivity extends AppCompatActivity {
         mBuilder.setSmallIcon(R.drawable.notificationicon);//Get an image in R.drawable and insert it here pls.
         mBuilder.setContentTitle("Wanna Listen To Some Music?");
         mBuilder.setContentText("Illumanition wants to remind you to check back in!");
+        if(!readFromFile(this,"selected_quote.txt").equals("")){
+            mBuilder.setContentTitle("Your Inspirational Quote");
+            mBuilder.setContentText(readFromFile(this,"selected_quote.txt"));
+        }
         Intent ifYouClick = new Intent(this,Music_Activity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(Music_Activity.class);

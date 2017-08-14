@@ -36,7 +36,8 @@
         <activity android:name=".GPSActivity" />
         <activity android:name=".FirstMeetUp" />
         <activity android:name=".tasklist_selector" />
-        <activity android:name=".tasklistv2"></activity>
+        <activity android:name=".tasklistv2" />
+        <activity android:name=".QuoteChooser"></activity>
     </application>
 
 </manifest>

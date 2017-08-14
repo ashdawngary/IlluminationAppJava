@@ -17,14 +17,14 @@
         android:fontFamily="sans-serif"
         android:text="Task List"
         android:textAllCaps="false"
+        android:layout_marginStart="116dp"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="116dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="98dp"
+        android:layout_marginTop="108dp"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Toplogo"
         android:layout_marginLeft="116dp"
         android:layout_marginRight="116dp"
         app:layout_constraintHorizontal_bias="0.0" />
@@ -40,11 +40,10 @@
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         app:layout_constraintRight_toRightOf="@+id/musicButton"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@+id/musicButton"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/musicButton"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintLeft_toLeftOf="@+id/musicButton" />
 
     <Button
         android:id="@+id/musicButton"
@@ -57,7 +56,7 @@
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         app:layout_constraintRight_toRightOf="@+id/TaskListButton"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="22dp"
         app:layout_constraintTop_toBottomOf="@+id/TaskListButton"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="@+id/TaskListButton"
@@ -90,11 +89,10 @@
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         app:layout_constraintRight_toRightOf="@+id/storyButton"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@+id/storyButton"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/storyButton"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintLeft_toLeftOf="@+id/storyButton" />
 
     <Button
         android:id="@+id/backButton"
@@ -109,28 +107,136 @@
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="-2dp"
-        android:layout_marginRight="2dp" />
+        android:layout_marginRight="6dp" />
+
+    <ImageButton
+        android:id="@+id/storiesInfo"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/questionmark"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/breathingInfo"
+        app:layout_constraintRight_toRightOf="@+id/musicInfo"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="@+id/musicInfo" />
+
+    <ImageButton
+        android:id="@+id/musicInfo"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/questionmark"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/storiesInfo"
+        app:layout_constraintRight_toRightOf="@+id/taskListInfo"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="@+id/taskListInfo" />
+
+    <ImageButton
+        android:id="@+id/breathingInfo"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/questionmark"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/animalvideosInfo"
+        app:layout_constraintRight_toRightOf="@+id/storiesInfo"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintLeft_toLeftOf="@+id/storiesInfo" />
+
+    <ImageButton
+        android:id="@+id/animalvideosInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/questionmark"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/animalVideosButton"
+        app:layout_constraintRight_toRightOf="@+id/breathingInfo"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/deepbreathing"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/breathingInfo" />
+
+    <ImageButton
+        android:id="@+id/taskListInfo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/questionmark"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="39dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/musicInfo"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="22dp"
+        app:layout_constraintLeft_toRightOf="@+id/TaskListButton"
+        android:layout_marginLeft="37dp"
+        android:layout_marginRight="39dp" />
 
     <ImageView
         android:id="@+id/Toplogo"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/illuminationlogo"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/TaskListButton"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="4dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp" />
+        app:srcCompat="@drawable/illuminationlogo"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/feedbacktextbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Give us Feedback!"
+        android:layout_marginStart="6dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="6dp" />
+
+    <TextView
+        android:id="@+id/changeMood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:clickable="true"
+        android:text="Change Mood"
+        app:layout_constraintBaseline_toBaselineOf="@+id/feedbacktextbutton"
+        app:layout_constraintLeft_toRightOf="@+id/feedbacktextbutton"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
 </android.support.constraint.ConstraintLayout>

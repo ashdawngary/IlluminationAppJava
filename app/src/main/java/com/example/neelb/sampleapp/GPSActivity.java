@@ -11,25 +11,25 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 public class GPSActivity extends AppCompatActivity implements LocationListener{
     LocationManager locationManager;
     Criteria criteria;
     String bestProvider;
-    TextView andoverDist;
-    TextView lexingtonDist;
-    TextView actonDist;
+
+    double andover,lexington,acton;
+    TextView district;
     TextView yourCords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
-        andoverDist = (TextView) findViewById(R.id.andoverDist);
-        lexingtonDist = (TextView) findViewById(R.id.lexidist);
-        actonDist = (TextView) findViewById(R.id.actonDist);
         yourCords = (TextView) findViewById(R.id.textView14);
+        district = (TextView) findViewById(R.id.district);
+
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         String locationProvider = LocationManager.GPS_PROVIDER;
         if ( Build.VERSION.SDK_INT >= 23 &&
@@ -43,9 +43,20 @@ public class GPSActivity extends AppCompatActivity implements LocationListener{
             double log = lastKnownLocation.getLongitude();
             System.out.println("User Cords are at: " + lat + " and " + log);
             yourCords.setText("Your cordinates are: "+lat+" and "+log);
-            actonDist.setText("Acton: "+dist(lat,log,42.4851,-71.4328));
-            andoverDist.setText("Andover: "+dist(lat,log,42.6583,-71.1368));
-            lexingtonDist.setText("Acton: "+dist(lat,log,42.4430,-71.2290));
+
+            String tag = "Lexington";
+            lexington = dist(lat,log,42.4851,-71.4328);
+            double best = lexington;
+            andover = dist(lat,log,42.6583,-71.1368);
+            acton = dist(lat,log,42.4430,-71.2290);
+            if(best > andover){
+                tag = "Andover";
+            }
+            if(best > acton){
+                tag = "Acton";
+            }
+            district.setText("District of "+tag);
+            Log.i("GpsActivity",lexington+" "+andover+" "+acton);
         }
         else{
             System.out.println("Startup locationManage Giving the Null!");
@@ -79,9 +90,18 @@ public class GPSActivity extends AppCompatActivity implements LocationListener{
         double log = location.getLongitude();
         System.out.println("User Cords are at: "+lat+" and "+log);
         yourCords.setText("Your cordinates are: "+lat+" and "+log);
-        actonDist.setText("Acton: "+dist(lat,log,42.4851,-71.4328));
-        andoverDist.setText("Andover: "+dist(lat,log,42.6583,-71.1368));
-        lexingtonDist.setText("Acton: "+dist(lat,log,42.4430,-71.2290));
+        String tag = "Lexington";
+        lexington = dist(lat,log,42.4851,-71.4328);
+        double best = lexington;
+        andover = dist(lat,log,42.6583,-71.1368);
+        acton = dist(lat,log,42.4430,-71.2290);
+        if(best > andover){
+            tag = "Andover";
+        }
+        if(best > acton){
+            tag = "Acton";
+        }
+        district.setText("District of "+tag);
         //remove location callback:
         locationManager.removeUpdates(this);
     }

@@ -2,4 +2,27 @@
     <string name="app_name">SampleApp</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_tasklist_selector">tasklist_selector</string>
+    <string-array name="inspirationalquotes">
+        <item>When it is darkest, we can see the stars.     - Ralph Waldo Emerson</item>
+        <item>Place your hand over your heart, can you feel it? That is called purpose. You’re alive for a reason so don’t ever give up.  - Unknown</item>
+        <item>Never never never give up.    - Winston Churchill</item>
+        <item>When the whole world is silent, even one voice becomes powerful. - Malala </item>
+        <item>The world is a better place with you in it. - Unknown </item>
+        <item>Feelings are just visitors. Let them come and go</item>
+        <item>Your speed doesn’t matter. Forward is forward</item>
+        <item>The real man smiles in trouble, gathers strength from distress, and grows brave by reflection.</item>
+        <item>Brave men rejoice in adversity, just as brave soldiers triumph in war.</item>
+        <item>Always seek out the seed of triumph in every adversity.</item>
+        <item>Start by doing whats necessary; then do whats possible; and suddenly you are doing the impossible</item>
+        <item>Success is to be measured not so much by the position that one has reached in life as by the obstacles which he has overcome. -Booker T. Washington</item>
+        <item>Turn your wounds into wisdom -Oprah Winfrey</item>
+        <item>I cant change the direction of the wind, but I can adjust my sails to always reach my destination. -Jimmy Dean</item>
+        <item>I hated every minute of training, but I said, Dont quit. Suffer now and live the rest of your life as a champion. -Muhammad Ali</item>
+        <item>Your big opportunity may be right where you are now</item>
+        <item></item>
+    </string-array>
+    <string-array name="StoryTitles">
+        <item>SampleStory1</item>
+        <item>SampleStory2</item>
+    </string-array>
 </resources>
