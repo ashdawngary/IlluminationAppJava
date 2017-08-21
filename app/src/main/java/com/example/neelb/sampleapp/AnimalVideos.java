@@ -1,5 +1,6 @@
 package com.example.neelb.sampleapp;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ public class AnimalVideos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal_videos);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/"
                 + R.raw.kittens);
         VideoView mVideoView  = (VideoView)findViewById(R.id.ViewVideo);

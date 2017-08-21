@@ -1,6 +1,7 @@
 package com.example.neelb.sampleapp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ public class tasklist_selector extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasklist_selector);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         ImageButton stayactive = (ImageButton) findViewById(R.id.stayactiveselect);
         ImageButton volunteerSelect = (ImageButton) findViewById(R.id.volunteerselect);
         ImageButton wellness = (ImageButton) findViewById(R.id.wellnessselect);

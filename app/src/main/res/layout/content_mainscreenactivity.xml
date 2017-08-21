@@ -29,10 +29,11 @@
         android:id="@+id/Samplequestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
+        android:layout_marginLeft="21dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="68dp"
         android:text="How are you feeling?"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="@+id/WelcomeMessage"
         app:layout_constraintTop_toBottomOf="@+id/WelcomeMessage"
@@ -89,7 +90,7 @@
         tools:layout_constraintTop_creator="1" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/badday"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_marginEnd="2dp"

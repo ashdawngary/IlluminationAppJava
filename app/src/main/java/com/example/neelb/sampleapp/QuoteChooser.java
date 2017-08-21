@@ -2,6 +2,7 @@ package com.example.neelb.sampleapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,9 +28,10 @@ public class QuoteChooser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //c = (ConstraintLayout) findViewById(R.id.constraintLayoutDummy);
         super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_quote_chooser);
-                Spinner quoteSelector = (Spinner) findViewById(R.id.quoteSpinner);
-                ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter.createFromResource(this, R.array.inspirationalquotes, android.R.layout.simple_spinner_item);
+        setContentView(R.layout.activity_quote_chooser);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
+        Spinner quoteSelector = (Spinner) findViewById(R.id.quoteSpinner);
+        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter.createFromResource(this, R.array.inspirationalquotes,R.layout.quote_spinner_custom ); //android.R.layout.simple_spinner_item
         quoteSelector.setAdapter(staticAdapter);
 
         final Context mycontext = this;

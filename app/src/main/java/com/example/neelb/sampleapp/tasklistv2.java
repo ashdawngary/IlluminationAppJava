@@ -1,7 +1,10 @@
 package com.example.neelb.sampleapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,12 +29,15 @@ public class tasklistv2 extends AppCompatActivity {
     public CheckBox checkbox5;
     public Intent chooseIntent;
     public String name;
-    final String[][] tasks =  {{"Task1","Task2","Task3","Task4","Task5"},{"ATask1","ATask2","ATask3","ATask4","ATask5"},{"Task1","Task2","Task3","Task4","Task5"}};
+    final String[][] tasks =  {{"Task1","Task2","Task3","Task4","Task5"},{"ATask1","ATask2","ATask3","ATask4","ATask5"},{"Wellness1","Wellness2","Wellness3","Wellness4","Wellness5"}};
     public TextView yourlist;
+    public Context myContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        myContext = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasklistv2);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         final Intent quoteSelector = new Intent(this,QuoteChooser.class);
         Button qOpen = (Button) findViewById(R.id.openQuoteSelector); // Temp trigger Button
         qOpen.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +76,7 @@ public class tasklistv2 extends AppCompatActivity {
         });
         name = readFromFile(this,"user_name.txt");
         yourlist = (TextView) findViewById(R.id.MotivationalTasklistview);
-        yourlist.setText(name+"'s Tasklist for "+readFromFile(this,"tasklist_choice.txt"));
+        yourlist.setText(name+"'s Activity List for "+readFromFile(this,"tasklist_choice.txt"));
 
         if(readFromFile(this,"tasklist_choice.txt").equals("")){
             writeToFile("","tasklist_choice.txt",this);
@@ -99,7 +105,16 @@ public class tasklistv2 extends AppCompatActivity {
                 Log.i("LoadProgres","Last Saved state: "+progress2);
                 updateScreen(readFromFile(this,"active_progress.txt"),tasks[1]);
                 break;
-
+            case "Wellness":
+                String progress3 = readFromFile(this,"wellness_progress.txt");
+                if (progress3.equals("")){
+                    writeToFile("00000","wellness_progress.txt",this);
+                }
+                Log.i("LoadProgres","Last Saved state: "+progress3);
+                updateScreen(readFromFile(this,"wellness_progress.txt"),tasks[2]);
+                break;
+            default:
+                Log.i("LoadProgres","Weird choice unable to load file.");
         }
     }
     public String getProgress(){
@@ -125,7 +140,56 @@ public class tasklistv2 extends AppCompatActivity {
             case "StayActive":
                 writeToFile(saveFile,"active_progress.txt",this);
                 break;
+            case "Wellness":
+                writeToFile(saveFile,"wellness_progress.txt",this);
         }
+        if(count(saveFile, '0') == 0) {
+            Log.i("taskListv2","User has filled up all achievements!  Asking if they want to open quote chooser.");
+            AlertDialog k = GenerateAlertDialogBox();
+            k.show();
+            Log.i("taskListv2","Opening AlertBox");
+
+        }
+    }
+
+    public AlertDialog GenerateAlertDialogBox(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm");
+        builder.setMessage("You completed all the tasks!  Would you like to choose a new Inspirational Quote?");
+
+        builder.setPositiveButton("Yes!", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Close dialog and then open Quoteselector.
+                dialog.dismiss();
+                final Intent quoteSelector = new Intent(myContext,QuoteChooser.class);
+                startActivity(quoteSelector);
+            }
+        });
+
+        builder.setNegativeButton("Pass", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        return alert;
+    }
+
+    public int count(String largeText,char needle){
+        int count = 0;
+        for(int index = 0; index < largeText.length();index ++){
+            if (largeText.charAt(index) == needle){
+                count += 1;
+            }
+        }
+        return count;
     }
     public void updateScreen(String progress,String[] headers){
         // stub out for now ...
@@ -145,7 +209,7 @@ public class tasklistv2 extends AppCompatActivity {
         startActivity(chooseIntent);
         //updateScreen();
         Log.i("UserChoose","Startactivity has ended.");
-        yourlist.setText(name+"'s Tasklist for "+readFromFile(this,"tasklist_choice.txt"));
+        yourlist.setText(name+"'s Activity List for "+readFromFile(this,"tasklist_choice.txt"));
         loadchoice();
     }
     private String readFromFile(Context context, String textfile) {

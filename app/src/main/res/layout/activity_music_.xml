@@ -75,27 +75,29 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cool Music Track 2"
-        android:layout_marginStart="16dp"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/jubilifeRestart"
-        tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="21dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Cool Music Track 2"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/jubilifeRestart"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tetris Theme Song:"
+        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        tools:layout_constraintTop_creator="1"
         android:layout_marginTop="6dp"
-        tools:layout_constraintLeft_creator="1"
+        android:text="Tetris Theme Song:"
+        android:textColor="#000000"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tetrisRestart"
-        android:layout_marginLeft="16dp" />
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <ImageButton
         android:id="@+id/playpause"

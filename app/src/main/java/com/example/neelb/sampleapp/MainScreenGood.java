@@ -15,7 +15,7 @@ public class MainScreenGood extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().getDecorView().setBackgroundColor(Color.rgb(240,240,240));
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         setContentView(R.layout.activity_main_screen_good);
         final Intent noticeIntent = new Intent(this,Notice.class);
         final Intent storiesIntent = new Intent(this,Stories.class);
@@ -25,7 +25,13 @@ public class MainScreenGood extends AppCompatActivity {
         final Intent musicIntent = new Intent(this,Music_Activity.class);
         final Intent animalVideos = new Intent(this,AnimalVideos.class);
         final Intent homeScreen = new Intent(this,Mainscreenactivity.class);
-
+        final Intent deepbreathing = new Intent(this,DeepBreathing.class);
+        Button deepbreathingbutton = (Button) findViewById(R.id.good_deepbreathing);
+        deepbreathingbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {startActivity(deepbreathing);
+            }
+        });
         Button animalsButton = (Button) findViewById(R.id.animalVideosButton);
         animalsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,22 +39,29 @@ public class MainScreenGood extends AppCompatActivity {
                 startActivity(animalVideos);
             }
             });
-                Button musicbutton = (Button) findViewById(R.id.musicButton);
+        Button musicbutton = (Button) findViewById(R.id.musicButton);
         musicbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 startActivity(musicIntent);
             }
         });
-
-        Button back = (Button) findViewById(R.id.backButton);
+        TextView aboutTheApp = (TextView) findViewById(R.id.appinfobutton);
+        aboutTheApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(noticeIntent);
+            }
+        });
+        //Button back = (Button) findViewById(R.id.backButton);
+        /*
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        /*
+
         Button notice = (Button) findViewById(R.id.noticeButton);
         notice.setOnClickListener(new View.OnClickListener(){
             @Override

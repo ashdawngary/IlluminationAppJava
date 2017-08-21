@@ -1,0 +1,6 @@
+here is what fermats theorem says: 
+For a prime p, and a base a such that a is coprime to p, 
+
+a^p is congruent to a mod p.
+
+Isnt that genius?  Thank Fermat!

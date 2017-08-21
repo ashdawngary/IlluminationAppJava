@@ -3,6 +3,7 @@ package com.example.neelb.sampleapp;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -27,6 +28,7 @@ public class GPSActivity extends AppCompatActivity implements LocationListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         yourCords = (TextView) findViewById(R.id.textView14);
         district = (TextView) findViewById(R.id.district);
 

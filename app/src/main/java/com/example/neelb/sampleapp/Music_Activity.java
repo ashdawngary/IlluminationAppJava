@@ -1,5 +1,6 @@
 package com.example.neelb.sampleapp;
 
+import android.graphics.Color;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class Music_Activity extends AppCompatActivity {
         maxvolume = 50;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         SeekBar volumebar = (SeekBar) findViewById(R.id.volumeSeekBar);
         volumebar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 

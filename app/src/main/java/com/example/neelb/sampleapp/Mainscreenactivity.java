@@ -35,7 +35,7 @@ public class Mainscreenactivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-        mBuilder.setSmallIcon(R.drawable.notificationicon);//Get an image in R.drawable and insert it here pls.
+        mBuilder.setSmallIcon(R.drawable.notificationicon);//Get an image in R.drawable and insert it here pls.  Must be black and white to adhere to Android Requirements.
         mBuilder.setContentTitle("Wanna Listen To Some Music?");
         mBuilder.setContentText("Illumanition wants to remind you to check back in!");
         if(!readFromFile(this,"selected_quote.txt").equals("")){
@@ -43,13 +43,14 @@ public class Mainscreenactivity extends AppCompatActivity {
             mBuilder.setContentText(readFromFile(this,"selected_quote.txt"));
         }
         Intent ifYouClick = new Intent(this,Music_Activity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        final TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(Music_Activity.class);
         stackBuilder.addNextIntent(ifYouClick);
         final String myname = readFromFile(this,"user_name.txt");
 
         final Intent myIntentX = new Intent(this,FirstMeetUp.class);
-
+        final Intent loadMedium = new Intent(this,MainScreenMedium.class);
+        final Intent loadBad = new Intent(this,MainScreenBad.class);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
         super.onCreate(savedInstanceState);
@@ -78,7 +79,20 @@ public class Mainscreenactivity extends AppCompatActivity {
                 startActivity(myIntentX);
             }
         });
-
+        ImageButton baddday = (ImageButton) findViewById(R.id.badday);
+        baddday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(loadBad);
+            }
+        });
+        ImageButton mediumday = (ImageButton) findViewById(R.id.mehday);
+        mediumday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(loadMedium);
+            }
+        });
         goodDay2.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){

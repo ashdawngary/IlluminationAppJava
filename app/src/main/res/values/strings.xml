@@ -25,4 +25,11 @@
         <item>SampleStory1</item>
         <item>SampleStory2</item>
     </string-array>
+    <string-array name="faqlist">
+        <item>Disclaimer</item>
+        <item>About Neel</item>
+        <item>About Srija</item>
+        <item>About Trisha</item>
+        <item>Future Works</item>
+    </string-array>
 </resources>

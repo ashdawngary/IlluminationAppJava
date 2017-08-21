@@ -37,7 +37,10 @@
         <activity android:name=".FirstMeetUp" />
         <activity android:name=".tasklist_selector" />
         <activity android:name=".tasklistv2" />
-        <activity android:name=".QuoteChooser"></activity>
+        <activity android:name=".QuoteChooser" />
+        <activity android:name=".MainScreenMedium" />
+        <activity android:name=".DeepBreathing" />
+        <activity android:name=".MainScreenBad"></activity>
     </application>
 
 </manifest>

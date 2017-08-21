@@ -1,0 +1,15 @@
+Here is some more text.  This is page 3 by the way if you look on the top right hand side!
+Isnt it interesting?
+
+here are some more formulas: 
+
+a^2 + b^2 = c^2  BUT what if we can extend it.  Here is a extension
+
+(fermat's last thrm)
+
+THERE EXIST NO SOLUTIONS FOR 
+
+a^Z + b^z = c^Z
+for a,b,c in Z, and z > 5
+
+Talk about that lol good thing eulcidean distance is for z = 2 :D

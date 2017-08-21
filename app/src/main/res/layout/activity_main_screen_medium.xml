@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.neelb.sampleapp.MainScreenMedium"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <Button
+        android:id="@+id/medium_tasklist"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/roundrect"
+        android:fontFamily="sans-serif"
+        android:text="Activities"
+        android:textAllCaps="false"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/medium_deepbreathing"
+        app:layout_constraintRight_toRightOf="@+id/medium_deepbreathing"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintLeft_toLeftOf="@+id/medium_deepbreathing" />
+
+    <TextView
+        android:id="@+id/medium_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp"
+        android:clickable="true"
+        android:text="Give us Feedback!"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <TextView
+        android:id="@+id/medium_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:clickable="true"
+        android:text="Change Mood"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/medium_feedback"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <TextView
+        android:id="@+id/medium_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:clickable="true"
+        android:text="About"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <Button
+        android:id="@+id/medium_deepbreathing"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/roundrect"
+        android:fontFamily="sans-serif"
+        android:text="Deep Breathing"
+        android:textAllCaps="false"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/medium_videos"
+        app:layout_constraintRight_toRightOf="@+id/medium_videos"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/medium_videos" />
+
+    <Button
+        android:id="@+id/medium_stories"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/roundrect"
+        android:fontFamily="sans-serif"
+        android:text="Stories"
+        android:textAllCaps="false"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/medium_peerTexting"
+        app:layout_constraintRight_toRightOf="@+id/medium_peerTexting"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/medium_peerTexting"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <Button
+        android:id="@+id/medium_peerTexting"
+        android:layout_width="121dp"
+        android:layout_height="0dp"
+        android:background="@drawable/roundrect"
+        android:fontFamily="sans-serif"
+        android:text="Peer Texting"
+        android:textAllCaps="false"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/medium_back"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.502" />
+
+    <Button
+        android:id="@+id/medium_videos"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/roundrect"
+        android:fontFamily="sans-serif"
+        android:text="Videos"
+        android:textAllCaps="false"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/medium_stories"
+        app:layout_constraintRight_toRightOf="@+id/medium_stories"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintLeft_toLeftOf="@+id/medium_stories"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="328dp"
+        android:layout_height="82dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="10dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/medium_tasklist"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.472"
+        app:srcCompat="@drawable/templogo"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+</android.support.constraint.ConstraintLayout>

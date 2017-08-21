@@ -1,0 +1,19 @@
+We want to make this app better!
+
+In the future, we will be implementing alot more ideas such as
+
+-- Better UI
+-- Machine Learning for Diagnosing People(Sentiment Analysis)
+-- More Contacts
+-- Customizable Activitylists!
+
+==============================================================
+
+
+Is there something that we missed?  Go to the homescreen and click on "Give us Feedback!"
+
+Give us ideas!
+
+Thanks,
+
+Illumination Team
