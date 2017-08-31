@@ -4,14 +4,19 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -20,6 +25,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class tasklistv2 extends AppCompatActivity {
     public CheckBox checkbox1;
@@ -29,23 +36,36 @@ public class tasklistv2 extends AppCompatActivity {
     public CheckBox checkbox5;
     public Intent chooseIntent;
     public String name;
+    // Ignore the tasks array it is obselete now.
     final String[][] tasks =  {{"Task1","Task2","Task3","Task4","Task5"},{"ATask1","ATask2","ATask3","ATask4","ATask5"},{"Wellness1","Wellness2","Wellness3","Wellness4","Wellness5"}};
     public TextView yourlist;
     public Context myContext;
+    public ProgressBar mainprogressbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (readFromFile(this,"activity.txt").equals("0")){
+            PostMessge(findViewById(android.R.id.content),"Explore tons of activities that are enjoyable and good for you! Choose from the healthy activity list or the volunteer opportunities list and track your progress towards a more resilient you. ",Snackbar.LENGTH_LONG);
+            writeToFile("1","activity.txt",myContext);
+        }else{
+            
+        }
         myContext = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasklistv2);
-        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(255,255,255));
         final Intent quoteSelector = new Intent(this,QuoteChooser.class);
-        Button qOpen = (Button) findViewById(R.id.openQuoteSelector); // Temp trigger Button
+        /*Button qOpen = (Button) findViewById(R.id.openQuoteSelector); // Temp trigger Button
         qOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(quoteSelector);
             }
         });
+        */
+        mainprogressbar = (ProgressBar) findViewById(R.id.activity_completion_pb);
+        mainprogressbar.setMax(100);
+        mainprogressbar.setProgress(0);
+        mainprogressbar.setIndeterminate(false);
         chooseIntent = new Intent(this,tasklist_selector.class);
         checkbox1 = (CheckBox) findViewById(R.id.checkBox1);
         checkbox2 = (CheckBox) findViewById(R.id.checkBox2);
@@ -67,13 +87,53 @@ public class tasklistv2 extends AppCompatActivity {
         checkbox5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {saveProgress();}});
-        Button changefocus = (Button) findViewById(R.id.cfB);
-        changefocus.setOnClickListener(new View.OnClickListener() {
+        Button refresh = (Button) findViewById(R.id.tasklist_genNew);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = readFromFile(myContext ,"tasklist_choice.txt");
+                String caller = content.toLowerCase();
+                caller.replace(' ','_');
+                switch(content){
+                    case "Volunteering":
+                        writeToFile("00000","volunteer_progress.txt",myContext);
+                        break;
+                    case "Activities For You":
+                        writeToFile("00000","activities_progress.txt",myContext);
+                        break;
+                    default:
+                        Log.i("refresh","Unable to Refresh due to unknown task: "+content);
+                }
+                writeToFile("",caller+"_0.txt",myContext);
+                loadchoice();
+            }
+        });
+        Spinner changefocus = (Spinner) findViewById(R.id.activites_catagories);
+        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter.createFromResource(this, R.array.activities_catagories,R.layout.quote_spinner_custom ); //android.R.layout.simple_spinner_item
+        changefocus.setAdapter(staticAdapter);
+        changefocus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String selected = (String) parent.getItemAtPosition(position);
+                //String[] checkboxes_content = getTasks(selected);
+                Log.i("item", "writing: "+selected);
+                writeToFile(selected,"tasklist_choice.txt",myContext);
+                loadchoice();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //Button changefocus = (Button) findViewById(R.id.cfB);
+        /*changefocus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userchoose();
             }
-        });
+        });*/
         name = readFromFile(this,"user_name.txt");
         yourlist = (TextView) findViewById(R.id.MotivationalTasklistview);
         yourlist.setText(name+"'s Activity List for "+readFromFile(this,"tasklist_choice.txt"));
@@ -85,36 +145,93 @@ public class tasklistv2 extends AppCompatActivity {
         }
         loadchoice();
     }
+    public String[] randomfiveSubset(String[] tasks){
+        int maximum = tasks.length -1;
+        int minimum = 0;
+        ArrayList<Integer> c = new ArrayList();
+        Random rn = new Random();
+        int range = maximum - minimum + 1;
+
+
+        int size_of_c = 0;
+        while (size_of_c != 5){
+            int randomNum =  rn.nextInt(range) + minimum;
+            if (!c.contains(randomNum)){
+                c.add(randomNum);
+                size_of_c += 1;
+            }
+        }
+        String[] tsks = new String[5];
+        for(int i = 0;i<5;i++){
+            tsks[i] = tasks[c.get(i)];
+        }
+        return tsks;
+    }
+    public void reloadtasks(String content){
+        String caller = content.toLowerCase();
+        caller.replace(' ','_');
+
+        switch(content){
+            case "Activities For You":
+                String[] tasks = randomfiveSubset(getResources().getStringArray(R.array.activities_list));
+                writeToFile(tasks[0],caller+"_0.txt",myContext);
+                writeToFile(tasks[1],caller+"_1.txt",myContext);
+                writeToFile(tasks[2],caller+"_2.txt",myContext);
+                writeToFile(tasks[3],caller+"_3.txt",myContext);
+                writeToFile(tasks[4],caller+"_4.txt",myContext);
+                break;
+            case "Volunteering":
+                writeToFile("Volunteer Task #1",caller+"_0.txt",myContext);
+                writeToFile("Volunteer Task #2",caller+"_1.txt",myContext);
+                writeToFile("Volunteer Task #3",caller+"_2.txt",myContext);
+                writeToFile("Volunteer Task #4",caller+"_3.txt",myContext);
+                writeToFile("Volunteer Task #5",caller+"_4.txt",myContext);
+                break;
+            default:
+                Log.i("reloadtasks"," reloadtasks encountered bad argument: "+content);
+        }
+    }
+
+    public String[] getTasks(String content){
+        String [] c = new String[5];
+        String caller = content.toLowerCase();
+        caller.replace(' ','_');
+        c[0] = readFromFile(myContext,caller+"_0.txt");
+        c[1] = readFromFile(myContext,caller+"_1.txt");
+        c[2] = readFromFile(myContext,caller+"_2.txt");
+        c[3] = readFromFile(myContext,caller+"_3.txt");
+        c[4] = readFromFile(myContext,caller+"_4.txt");
+        Log.i("getTasks()","Loaded Elements for "+content+" c0 has length "+c[0].length());
+        if(c[0].length() < 2){
+            reloadtasks(content);
+            return getTasks(content);
+        }
+        return c;
+    }
+
     public void loadchoice(){
         String choice = readFromFile(this,"tasklist_choice.txt");
         yourlist.setText(name+"'s Tasklist for "+choice);
         switch(choice){
-            case "Volunteer":
+            case "Volunteering":
                 String progress = readFromFile(this,"volunteer_progress.txt");
                 if (progress.equals("")){
                     writeToFile("00000","volunteer_progress.txt",this);
                 }
                 Log.i("LoadProgres","Last Saved state: "+progress);
-                updateScreen(readFromFile(this,"volunteer_progress.txt"),tasks[0]);
+                updateScreen(readFromFile(this,"volunteer_progress.txt"),getTasks("Volunteer"));
                 break;
-            case "StayActive":
-                String progress2 = readFromFile(this,"active_progress.txt");
-                if (progress2.equals("")){
-                    writeToFile("00000","active_progress.txt",this);
+            case "Activities For You":
+                String prgs = readFromFile(this,"activities_progress.txt");
+                if (prgs.equals("")){
+                    writeToFile("00000","activities_progress.txt",this);
                 }
-                Log.i("LoadProgres","Last Saved state: "+progress2);
-                updateScreen(readFromFile(this,"active_progress.txt"),tasks[1]);
+                Log.i("LoadProgres","Last Saved state: "+prgs);
+                updateScreen(readFromFile(this,"activities_progress.txt"),getTasks("Activities For You"));
                 break;
-            case "Wellness":
-                String progress3 = readFromFile(this,"wellness_progress.txt");
-                if (progress3.equals("")){
-                    writeToFile("00000","wellness_progress.txt",this);
-                }
-                Log.i("LoadProgres","Last Saved state: "+progress3);
-                updateScreen(readFromFile(this,"wellness_progress.txt"),tasks[2]);
-                break;
+
             default:
-                Log.i("LoadProgres","Weird choice unable to load file.");
+                Log.i("LoadProgres","Weird choice unable to load file. ( recieved: <"+choice+">");
         }
     }
     public String getProgress(){
@@ -128,21 +245,26 @@ public class tasklistv2 extends AppCompatActivity {
                 st += "0";
             }
         }
-        Log.e("GetProgress","Survey says "+st);
+        Log.i("GetProgress","Survey says "+st);
         return st;
     }
     public void saveProgress(){
         String saveFile = getProgress();
         switch(readFromFile(this,"tasklist_choice.txt")){
-            case "Volunteer":
+            case "Volunteering":
                 writeToFile(saveFile,"volunteer_progress.txt",this);
                 break;
-            case "StayActive":
-                writeToFile(saveFile,"active_progress.txt",this);
+            case "Activities For You":
+                writeToFile(saveFile,"activities_progress.txt",this);
                 break;
-            case "Wellness":
-                writeToFile(saveFile,"wellness_progress.txt",this);
+            default:
+                Log.e("SaveProgress","Bad Argument Detected: ");
         }
+        int pgs = count(saveFile,'1')*20;
+        Log.i("SaveProgress","Saving Progress Bar to "+pgs);
+        mainprogressbar.setProgress(pgs);
+
+
         if(count(saveFile, '0') == 0) {
             Log.i("taskListv2","User has filled up all achievements!  Asking if they want to open quote chooser.");
             AlertDialog k = GenerateAlertDialogBox();
@@ -206,7 +328,8 @@ public class tasklistv2 extends AppCompatActivity {
         yourlist.setText(name+"'s Tasklist for "+readFromFile(this,"tasklist_choice.txt"));
     }
     public void userchoose(){
-        startActivity(chooseIntent);
+        writeToFile("Volunteering","tasklist_choice.txt",myContext);
+        //startActivity(chooseIntent);
         //updateScreen();
         Log.i("UserChoose","Startactivity has ended.");
         yourlist.setText(name+"'s Activity List for "+readFromFile(this,"tasklist_choice.txt"));
@@ -248,7 +371,17 @@ public class tasklistv2 extends AppCompatActivity {
             outputStreamWriter.close();
         }
         catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
+            Log.e("Exception", "File write failed: " +e.toString());
         }
+    }
+    public void PostMessge(View v, String t, int mode){
+        final Snackbar sn = Snackbar.make(v,t,mode);
+        sn.setAction("Dismiss",new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                sn.dismiss();
+            }
+        });
+        sn.show();
     }
 }

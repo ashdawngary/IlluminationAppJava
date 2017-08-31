@@ -21,8 +21,9 @@
         app:layout_constraintBottom_toTopOf="@+id/medium_deepbreathing"
         app:layout_constraintRight_toRightOf="@+id/medium_deepbreathing"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="11dp"
-        app:layout_constraintLeft_toLeftOf="@+id/medium_deepbreathing" />
+        android:layout_marginBottom="17dp"
+        app:layout_constraintLeft_toLeftOf="@+id/medium_deepbreathing"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <TextView
         android:id="@+id/medium_feedback"
@@ -82,8 +83,9 @@
         app:layout_constraintBottom_toTopOf="@+id/medium_videos"
         app:layout_constraintRight_toRightOf="@+id/medium_videos"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintLeft_toLeftOf="@+id/medium_videos" />
+        android:layout_marginBottom="22dp"
+        app:layout_constraintLeft_toLeftOf="@+id/medium_videos"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
         android:id="@+id/medium_stories"
@@ -98,7 +100,7 @@
         app:layout_constraintBottom_toTopOf="@+id/medium_peerTexting"
         app:layout_constraintRight_toRightOf="@+id/medium_peerTexting"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="14dp"
         app:layout_constraintLeft_toLeftOf="@+id/medium_peerTexting"
         app:layout_constraintHorizontal_bias="0.0" />
 
@@ -115,7 +117,7 @@
         app:layout_constraintBottom_toTopOf="@+id/medium_back"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="33dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.502" />
 
@@ -132,24 +134,27 @@
         app:layout_constraintBottom_toTopOf="@+id/medium_stories"
         app:layout_constraintRight_toRightOf="@+id/medium_stories"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="26dp"
         app:layout_constraintLeft_toLeftOf="@+id/medium_stories"
         app:layout_constraintHorizontal_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="328dp"
-        android:layout_height="82dp"
-        android:layout_marginBottom="14dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginStart="10dp"
-        android:scaleType="fitXY"
+    <TextView
+        android:id="@+id/medium_tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Illumination"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/medium_tasklist"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="43dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.472"
-        app:srcCompat="@drawable/templogo"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        app:layout_constraintVertical_bias="1.0" />
+
 </android.support.constraint.ConstraintLayout>

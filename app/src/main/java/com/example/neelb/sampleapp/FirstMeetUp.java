@@ -21,10 +21,20 @@ public class FirstMeetUp extends AppCompatActivity {
     EditText name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        name = (EditText) findViewById(R.id.EnterText);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_meet_up);
-        getWindow().getDecorView().setBackgroundColor(Color.rgb(255,222,173));
+        name = (EditText) findViewById(R.id.EnterText);
+        writeToFile("0","activity.txt",this);
+        writeToFile("0","music.txt",this);
+        writeToFile("0","dbreath.txt",this);
+        writeToFile("0","stories.txt",this);
+        writeToFile("0","videos.txt",this);
+        writeToFile("0","helpline.txt",this);
+        writeToFile("0","contactafriend.txt",this);
+        writeToFile("0","helpline.txt",this);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(255,255,255));
         Intent mainGood = new Intent(this,MainScreenGood.class);
         Button goodDay = (Button) findViewById(R.id.continueButton);
         final Intent myIntent = new Intent(this,MainScreenGood.class);

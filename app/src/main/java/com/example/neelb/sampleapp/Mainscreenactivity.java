@@ -57,11 +57,11 @@ public class Mainscreenactivity extends AppCompatActivity {
         setContentView(R.layout.activity_mainscreenactivity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        WelcomeName = (TextView) findViewById(R.id.WelcomeMessage);
+        WelcomeName = (TextView) findViewById(R.id.core_greeting);
         //name = (EditText) findViewById(R.id.NameField);
         if(!myname.equals("")){
             //name.setText(myname);
-            WelcomeName.setText("Welcome, "+myname);
+            WelcomeName.setText("Hey "+myname+",\n How are you feeling?");
         }
         else {
             startActivity(myIntentX); // New Nameset Page
@@ -99,12 +99,12 @@ public class Mainscreenactivity extends AppCompatActivity {
                     // Write code to edit stuff
                     //System.out.println("Button was hit.");
                     String personName = myname;
-                    WelcomeName.setText("Welcome, "+personName);
+                    //WelcomeName.setText("Welcome, "+personName);
                     writeToFile(personName,"user_name.txt",mycontext);
                     Log.i("MainScreen","name is <"+personName+">"+personName.length());
                     if(personName.length() > 0 && !personName.equals("Enter A Name!") && satisfactoryName(personName)){
                         //name.setText(personName);
-                        WelcomeName.setText("Welcome, "+personName);
+                        //WelcomeName.setText("Welcome, "+personName);
                         startActivity(myIntent);
                         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         mNotificationManager.notify(2, mBuilder.build());

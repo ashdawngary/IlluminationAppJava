@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">SampleApp</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Illumination</string>
+    <string name="action_settings">Illumination</string>
     <string name="title_activity_tasklist_selector">tasklist_selector</string>
+    <string-array name = "videoNames">
+        <item>Dog Video #1</item>
+        <item>Dog Video #2</item>
+    </string-array>
     <string-array name="inspirationalquotes">
         <item>When it is darkest, we can see the stars.     - Ralph Waldo Emerson</item>
         <item>Place your hand over your heart, can you feel it? That is called purpose. You’re alive for a reason so don’t ever give up.  - Unknown</item>
@@ -21,9 +25,36 @@
         <item>Your big opportunity may be right where you are now</item>
         <item></item>
     </string-array>
+    <string-array name = "activities_list">
+        <item>Imagining you are walking through a meadow</item>
+        <item>Discover the therapeutic value of working in the garden</item>
+        <item>Volunteer for a good cause</item>
+        <item>Use a tension-relief roller</item>
+        <item>Decrease your workload</item>
+        <item>Call and talk to a friend</item>
+        <item>Get polarity therapy</item>
+        <item>Do a random act of kindness</item>
+        <item>Relish a favorite memory</item>
+        <item>Step outside and savor the sunlight</item>
+        <item>Take a nap</item>
+        <item>Do progressive muscle relaxation, starting with the feet and moving toward the head</item>
+        <item>Stretch for a few minutes</item>
+        <item>List all the things you love about yourself</item>
+        <item>Forgive yourself for the things you \"think\" you\'ve done wrong -- move on</item>
+        <item>Put on your favorite outfit</item>
+        <item>Spend time with family over a good meal</item>
+        <item>Create handmade thank you notes</item>
+        <item>Drink a cup of relaxation-inducing herbal tea, such as chamomile</item>
+        <item>Look back through pictures of happy memories -- family vacations and special events -- and focus on how happy you were</item>
+    </string-array>
+    <string-array name="activities_catagories">
+        <item>Activities For You</item>
+        <item>Volunteering</item>
+    </string-array>
     <string-array name="StoryTitles">
-        <item>SampleStory1</item>
-        <item>SampleStory2</item>
+        <item>Ali the Writer</item>
+        <item>Andrew the Football Player</item>
+        <item>Melissa the Speaker</item>
     </string-array>
     <string-array name="faqlist">
         <item>Disclaimer</item>

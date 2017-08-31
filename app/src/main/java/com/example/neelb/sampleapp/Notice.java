@@ -2,6 +2,7 @@ package com.example.neelb.sampleapp;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,19 +15,23 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
 public class Notice extends AppCompatActivity {
     public final Context mycontext = this; // we will be reading alot so we need this for sure.
     public TextView answerBox;
+    public final Context myContext = mycontext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
-        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
+
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(255,255,255));
         // Need to Map Something?  Lets HashMap!  We hashmap String -> int since int is the id for the R.Raw file containing <String>
         final HashMap<String,Integer> qtoa = new HashMap<>(); //News flash aparently Hashmap doesnt like "primitives" so rip int
         qtoa.put("Disclaimer",R.raw.disclaimer); // Check: fill in R.id for Disclaimer. (put in a text file)
@@ -70,5 +75,54 @@ public class Notice extends AppCompatActivity {
             return null;
         }
         return text.toString();
+    }
+    public void PostMessge(View v, String t, int mode){
+        final Snackbar sn = Snackbar.make(v,t,mode);
+        sn.setAction("Dismiss",new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                sn.dismiss();
+            }
+        });
+        sn.show();
+    }
+    private String readFromFile(Context context, String textfile) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput(textfile);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
+    private void writeToFile(String data,String textfile,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(textfile, Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
     }
 }

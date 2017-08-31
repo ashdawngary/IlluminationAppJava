@@ -1,9 +1,12 @@
 package com.example.neelb.sampleapp;
 
+import android.content.Context;
 import android.database.*;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.provider.ContactsContract.Contacts;
@@ -20,7 +23,10 @@ public class Contact extends AppCompatActivity {
     int editcontactNumber;
     @Override
     protected void onCreate(final Bundle savedInstanceState){
-
+        if(readFromFile(this,"helpline.txt").equals("1")){
+            PostMessge(findViewById(android.R.id.content),"If you feel helpless and think you are in an emergency, you MUST use either of these helplines. The trained professionals on the other end want to help you and will not judge you and your feelings.",Snackbar.LENGTH_LONG);
+            writeToFile("1","helpline.txt",this);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
         getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
@@ -200,5 +206,54 @@ public class Contact extends AppCompatActivity {
             System.out.println("Couldnt Save Data :/ : "+ex.getMessage());
         }
 
+    }
+    public void PostMessge(View v, String t, int mode){
+        final Snackbar sn = Snackbar.make(v,t,mode);
+        sn.setAction("Dismiss",new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                sn.dismiss();
+            }
+        });
+        sn.show();
+    }
+    private String readFromFile(Context context, String textfile) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput(textfile);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
+    private void writeToFile(String data,String textfile,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(textfile, Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
     }
 }

@@ -8,6 +8,22 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
+    <ImageButton
+        android:id="@+id/relaxViolinRestart"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="138dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/tetrisRestart"
+        app:layout_constraintRight_toRightOf="@+id/tetrisRestart"
+        app:srcCompat="@drawable/restart"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
     <Button
         android:id="@+id/exitMusicButton"
         android:layout_width="0dp"
@@ -54,10 +70,10 @@
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/playpause"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="14dp"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="19dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp" />
@@ -75,10 +91,24 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="16dp"
+        android:text="Relaxation Music"
+        android:textColor="#000000"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="24dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/relaxViolinRestart"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:text="Cool Music Track 2"
+        android:text="Energizing Music"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/jubilifeRestart"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -91,8 +121,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:text="Tetris Theme Song:"
+        android:layout_marginTop="3dp"
+        android:text="Calming Music"
         android:textColor="#000000"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tetrisRestart"
@@ -101,8 +131,8 @@
 
     <ImageButton
         android:id="@+id/playpause"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
         android:background="?android:selectableItemBackground"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/pause"
@@ -120,8 +150,8 @@
         app:layout_constraintLeft_toLeftOf="@+id/tetrisRestart"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="16dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/jubilifeRestart"
@@ -135,8 +165,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="@+id/tetrisRestart"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="151dp"
-        app:layout_constraintLeft_toLeftOf="@+id/tetrisRestart" />
+        android:layout_marginBottom="226dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tetrisRestart"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <ImageButton
         android:id="@+id/tetrisRestart"
@@ -149,7 +180,7 @@
         app:layout_constraintBottom_toTopOf="@+id/jubilifeRestart"
         android:layout_marginStart="47dp"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintLeft_toRightOf="@+id/textView19"
         android:layout_marginLeft="47dp" />
 

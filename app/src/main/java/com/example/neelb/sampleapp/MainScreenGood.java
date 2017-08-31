@@ -1,20 +1,30 @@
 package com.example.neelb.sampleapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 // -113 79 -159
 
 public class MainScreenGood extends AppCompatActivity {
-
+    public Context myContext = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("msg","loading oncreate()");
         getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         setContentView(R.layout.activity_main_screen_good);
         final Intent noticeIntent = new Intent(this,Notice.class);
@@ -108,31 +118,9 @@ public class MainScreenGood extends AppCompatActivity {
         });
         */
         // Set all Info Buttons <ImageButton>
-        ImageButton taskListInfo = (ImageButton) findViewById(R.id.taskListInfo);
-        ImageButton musicInfo = (ImageButton) findViewById(R.id.musicInfo);
-        ImageButton storiesInfo = (ImageButton) findViewById(R.id.storiesInfo);
-        ImageButton breathingInfo = (ImageButton) findViewById(R.id.breathingInfo);
-        ImageButton animalVideosInfo = (ImageButton) findViewById(R.id.animalvideosInfo);
-        taskListInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {PostMessge(v,"Set goals for yourself and achieve them!",Snackbar.LENGTH_LONG);}
-        });
-        musicInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {PostMessge(v,"Listen To some music!",Snackbar.LENGTH_LONG);}
-        });
-        storiesInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {PostMessge(v,"Read some real life accounts",Snackbar.LENGTH_LONG);}
-        });
-        breathingInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {PostMessge(v,"Practice Deep Breathing",Snackbar.LENGTH_LONG);}
-        });
-        animalVideosInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {PostMessge(v,"Watch some cute animal videos!",Snackbar.LENGTH_LONG);}
-        });
+
+
+
     }
     public void PostMessge(View v, String t, int mode){
         final Snackbar sn = Snackbar.make(v,t,mode);
@@ -143,5 +131,44 @@ public class MainScreenGood extends AppCompatActivity {
             }
         });
         sn.show();
+    }
+    private String readFromFile(Context context, String textfile) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput(textfile);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
+    private void writeToFile(String data,String textfile,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(textfile, Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
     }
 }
