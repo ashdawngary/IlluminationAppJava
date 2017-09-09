@@ -40,7 +40,9 @@
         <activity android:name=".QuoteChooser" />
         <activity android:name=".MainScreenMedium" />
         <activity android:name=".DeepBreathing" />
-        <activity android:name=".MainScreenBad"></activity>
+        <activity android:name=".MainScreenBad" />
+        <activity android:name=".TransitionActivity" />
+        <activity android:name=".helpline"></activity>
     </application>
 
 </manifest>

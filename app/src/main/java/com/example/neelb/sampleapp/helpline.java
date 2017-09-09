@@ -3,16 +3,13 @@ package com.example.neelb.sampleapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -21,57 +18,32 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class MainScreenBad extends AppCompatActivity {
-    public final Context mycontext = this;
-    public final String crisistextline = "";
-    public final String suicidePrevention = "";
-    public Intent helplineIntent;
+public class helpline extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_screen_bad);
-        getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
-        /*TODO: Intialize ALL Intents */
-        final Intent peercontact = new Intent(this,Contact.class);
-        helplineIntent = new Intent(this,helpline.class);
-        /*TODO: Intialize All Buttons*/
-        Button peercontactbutton = (Button)findViewById(R.id.bad_peertexting);
-        Button texthelpline = (Button) findViewById(R.id.bad_TextHelpLine);
-        if(readFromFile(this,"contactafriend.txt").equals("1")){
-            writeToFile("1","contactafriend.txt",this);
-        }
-        if(readFromFile(this,"helpline.txt").equals("1")){
-            writeToFile("1","helpline.txt",this);
-        }
-        /*TODO: Implement ALL Listeners */
-        peercontactbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {startActivity(peercontact);
-            }
-        });
-        texthelpline.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_helpline);
+        Button nspl  = (Button) findViewById(R.id.call_nspl);
+        Button crisistextline = (Button) findViewById(R.id.call_crisistextline); // Technically "sms"
+        crisistextline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(helplineIntent);
-                //GenerateAlertDialogBox().show();
+                launchCall("crisistextlinenumber");
             }
         });
-    }
-    public void PostMessge(View v, String t, int mode){
-        final Snackbar sn = Snackbar.make(v,t,mode);
-        sn.setAction("Dismiss",new View.OnClickListener(){
+        nspl.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                sn.dismiss();
+            public void onClick(View v) {
+                launchtele("nsplnumber");
             }
         });
-        sn.show();
     }
     public AlertDialog GenerateAlertDialogBox(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Confirm");
-        builder.setMessage("Everyone needs to lean on someone at some point. Enter in three trusted contacts and have them at the ready whenever you want to text them how you feel. Would You like to talk to a Helpline?");
+        builder.setMessage("Would You like to talk to a Helpline?");
 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
@@ -79,7 +51,6 @@ public class MainScreenBad extends AppCompatActivity {
                 // Close dialog and then open Quoteselector.
                 dialog.dismiss();
                 // Start Text Intent.
-                launchCall("No Helpline number saved.");
             }
         });
 
@@ -87,9 +58,9 @@ public class MainScreenBad extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                // Do nothing
+                // Exit the screen
                 dialog.dismiss();
+                finish();
             }
         });
 
@@ -99,6 +70,12 @@ public class MainScreenBad extends AppCompatActivity {
     public void launchCall(String telephoneNumber){
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
         sendIntent.setData(Uri.parse("sms:"+telephoneNumber));
+        startActivity(sendIntent);
+    }
+
+    public void launchtele(String telephoneNumber){
+        Intent sendIntent = new Intent(Intent.ACTION_DIAL);
+        sendIntent.setData(Uri.parse("tel:"+telephoneNumber));
         startActivity(sendIntent);
     }
     private String readFromFile(Context context, String textfile) {

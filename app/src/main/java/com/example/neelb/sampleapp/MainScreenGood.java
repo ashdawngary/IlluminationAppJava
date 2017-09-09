@@ -1,10 +1,14 @@
 package com.example.neelb.sampleapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
+import android.support.transition.Transition;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,46 +25,66 @@ import java.io.OutputStreamWriter;
 
 public class MainScreenGood extends AppCompatActivity {
     public Context myContext = this;
+    public  Intent noticeIntent;
+    public  Intent storiesIntent;
+    public  Intent feedbackIntent; // This is the feedback thing.
+    public  Intent tasklistIntent;
+    public  Intent contactIntent;
+    public  Intent musicIntent;
+    public  Intent animalVideos;
+    public  Intent homeScreen;
+    public  Intent deepbreathing;
+    public  Intent transition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        noticeIntent = new Intent(this,Notice.class);
+        storiesIntent = new Intent(this,Stories.class);
+        feedbackIntent = new Intent(this,GPSActivity.class); // This is the feedback thing.
+        tasklistIntent = new Intent(this,tasklistv2.class);
+        contactIntent = new Intent(this,Contact.class);
+        musicIntent = new Intent(this,Music_Activity.class);
+        animalVideos = new Intent(this,AnimalVideos.class);
+        homeScreen = new Intent(this,Mainscreenactivity.class);
+        deepbreathing = new Intent(this,DeepBreathing.class);
+        transition = new Intent(this,TransitionActivity.class);
         Log.i("msg","loading oncreate()");
         getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         setContentView(R.layout.activity_main_screen_good);
-        final Intent noticeIntent = new Intent(this,Notice.class);
-        final Intent storiesIntent = new Intent(this,Stories.class);
-        final Intent feedbackIntent = new Intent(this,GPSActivity.class); // This is the feedback thing.
-        final Intent tasklistIntent = new Intent(this,tasklistv2.class);
-        final Intent contactIntent = new Intent(this,Contact.class);
-        final Intent musicIntent = new Intent(this,Music_Activity.class);
-        final Intent animalVideos = new Intent(this,AnimalVideos.class);
-        final Intent homeScreen = new Intent(this,Mainscreenactivity.class);
-        final Intent deepbreathing = new Intent(this,DeepBreathing.class);
+
         Button deepbreathingbutton = (Button) findViewById(R.id.good_deepbreathing);
         deepbreathingbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {startActivity(deepbreathing);
+            public void onClick(View v) {
+                writeToFile("Deep Breathing","transitiondisplay.txt",myContext);
+                startActivity(transition);
+                //startActivity(deepbreathing);
             }
         });
         Button animalsButton = (Button) findViewById(R.id.animalVideosButton);
         animalsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(animalVideos);
+                writeToFile("Animal Videos","transitiondisplay.txt",myContext);
+                startActivity(transition);
+                //startActivity(animalVideos);
             }
             });
         Button musicbutton = (Button) findViewById(R.id.musicButton);
         musicbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(musicIntent);
+                writeToFile("Music","transitiondisplay.txt",myContext);
+                startActivity(transition);
+                //startActivity(musicIntent);
             }
         });
         TextView aboutTheApp = (TextView) findViewById(R.id.appinfobutton);
         aboutTheApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(noticeIntent);
+                writeToFile("About Illumination","transitiondisplay.txt",myContext);
+                startActivity(transition);
             }
         });
         //Button back = (Button) findViewById(R.id.backButton);
@@ -85,21 +109,25 @@ public class MainScreenGood extends AppCompatActivity {
         stories.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(storiesIntent);
+                writeToFile("Stories","transitiondisplay.txt",myContext);
+                startActivity(transition);
+                //startActivity(storiesIntent);
             }
         });
         Button tasklistButton = (Button) findViewById(R.id.TaskListButton);
         tasklistButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(tasklistIntent);
+                writeToFile("Activities","transitiondisplay.txt",myContext);
+                startActivity(transition);
+                //startActivity(tasklistIntent);
             }
         });
         TextView feedbackbutton = (TextView) findViewById(R.id.feedbacktextbutton);
         feedbackbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(feedbackIntent);
+                GenFeedBackBox().show();
             }
         });
         TextView changeMood = (TextView) findViewById(R.id.changeMood);
@@ -170,5 +198,36 @@ public class MainScreenGood extends AppCompatActivity {
         catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
+    }
+    public AlertDialog GenFeedBackBox(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Select A Target");
+        builder.setMessage("Would you like to send feedback to the app developers, or to the School District?");
+
+        builder.setPositiveButton("Illumination", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Close dialog and then open Quoteselector.
+                dialog.dismiss();
+                // Start Text Intent.
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.illuminationapp.org"));
+                startActivity(browserIntent);
+            }
+        });
+
+        builder.setNegativeButton("School District", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                dialog.dismiss();
+                startActivity(feedbackIntent);
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        return alert;
     }
 }

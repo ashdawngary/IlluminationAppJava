@@ -53,17 +53,17 @@ public class Stories extends AppCompatActivity implements GestureDetector.OnGest
         final TextView storyTextView = (TextView) findViewById(R.id.storyProjector);
         final TextView authorCredit = (TextView) findViewById(R.id.authorCredit);
         switch(currentStory){
-            case "Ali the Writer":
+            case "Meet Ali":
                 story_id_for_display = alirothrockpages[CurrentPage-1];
                 storyAuthor = "Ali Rothrock";
                 maxPage = 2;
                 break;
-            case "Andrew the Football Player":
+            case "Meet Andrew":
                 story_id_for_display = andrewPages[CurrentPage-1];
                 storyAuthor = "Andrew Onimus";
                 maxPage = 2;
                 break;
-            case "Melissa the Speaker":
+            case "Meet Melissa":
                 story_id_for_display = melisaPages[CurrentPage-1];
                 storyAuthor = "Melissa Rice";
                 maxPage = 3;
@@ -230,6 +230,9 @@ public class Stories extends AppCompatActivity implements GestureDetector.OnGest
     }
     public void PostMessge(View v, String t, int mode){
         final Snackbar sn = Snackbar.make(v,t,mode);
+        View snackbarView = sn.getView();
+        TextView snackTextView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        snackTextView.setMaxLines(4);
         sn.setAction("Dismiss",new View.OnClickListener(){
             @Override
             public void onClick(View v){

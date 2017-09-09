@@ -37,7 +37,7 @@ public class FirstMeetUp extends AppCompatActivity {
         getWindow().getDecorView().setBackgroundColor(Color.rgb(255,255,255));
         Intent mainGood = new Intent(this,MainScreenGood.class);
         Button goodDay = (Button) findViewById(R.id.continueButton);
-        final Intent myIntent = new Intent(this,MainScreenGood.class);
+        final Intent myIntent = new Intent(this,Mainscreenactivity.class);
         final Context mycontext = this;
         goodDay.setOnClickListener(new View.OnClickListener() {
             @Override

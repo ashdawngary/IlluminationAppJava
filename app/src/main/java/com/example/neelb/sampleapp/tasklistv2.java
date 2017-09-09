@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Random;
+/*
+Hey there whats your name  - bolded
+Illumination Logo instead of Iluimination
+Continue needs to be centered
 
+---------------------------------------
+
+
+ */
 public class tasklistv2 extends AppCompatActivity {
     public CheckBox checkbox1;
     public CheckBox checkbox2;
@@ -39,7 +48,7 @@ public class tasklistv2 extends AppCompatActivity {
     // Ignore the tasks array it is obselete now.
     final String[][] tasks =  {{"Task1","Task2","Task3","Task4","Task5"},{"ATask1","ATask2","ATask3","ATask4","ATask5"},{"Wellness1","Wellness2","Wellness3","Wellness4","Wellness5"}};
     public TextView yourlist;
-    public Context myContext;
+    public Context myContext = this;
     public ProgressBar mainprogressbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,14 +145,17 @@ public class tasklistv2 extends AppCompatActivity {
         });*/
         name = readFromFile(this,"user_name.txt");
         yourlist = (TextView) findViewById(R.id.MotivationalTasklistview);
-        yourlist.setText(name+"'s Activity List for "+readFromFile(this,"tasklist_choice.txt"));
-
+        setListName();
         if(readFromFile(this,"tasklist_choice.txt").equals("")){
             writeToFile("","tasklist_choice.txt",this);
             Log.i("taskListv2","calling choose function.");
             userchoose();
         }
         loadchoice();
+    }
+    public void setListName() {
+
+        yourlist.setText(name + "'s Activity List");
     }
     public String[] randomfiveSubset(String[] tasks){
         int maximum = tasks.length -1;
@@ -211,9 +223,12 @@ public class tasklistv2 extends AppCompatActivity {
 
     public void loadchoice(){
         String choice = readFromFile(this,"tasklist_choice.txt");
-        yourlist.setText(name+"'s Tasklist for "+choice);
         switch(choice){
             case "Volunteering":
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.volunteermatch.org/"));
+                startActivity(browserIntent);
+
+                // Cut out all of this stuff
                 String progress = readFromFile(this,"volunteer_progress.txt");
                 if (progress.equals("")){
                     writeToFile("00000","volunteer_progress.txt",this);
@@ -325,14 +340,12 @@ public class tasklistv2 extends AppCompatActivity {
         checkbox3.setChecked(progress.charAt(2) == '1');
         checkbox4.setChecked(progress.charAt(3) == '1');
         checkbox5.setChecked(progress.charAt(4) == '1');
-        yourlist.setText(name+"'s Tasklist for "+readFromFile(this,"tasklist_choice.txt"));
     }
     public void userchoose(){
         writeToFile("Volunteering","tasklist_choice.txt",myContext);
         //startActivity(chooseIntent);
         //updateScreen();
         Log.i("UserChoose","Startactivity has ended.");
-        yourlist.setText(name+"'s Activity List for "+readFromFile(this,"tasklist_choice.txt"));
         loadchoice();
     }
     private String readFromFile(Context context, String textfile) {
@@ -370,12 +383,18 @@ public class tasklistv2 extends AppCompatActivity {
             outputStreamWriter.write(data);
             outputStreamWriter.close();
         }
+        catch(NullPointerException e){
+            Log.e("Exception","Write Failed due to a Null Pointer Exception.");
+        }
         catch (IOException e) {
             Log.e("Exception", "File write failed: " +e.toString());
         }
     }
     public void PostMessge(View v, String t, int mode){
         final Snackbar sn = Snackbar.make(v,t,mode);
+        View snackbarView = sn.getView();
+        TextView snackTextView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        snackTextView.setMaxLines(6);
         sn.setAction("Dismiss",new View.OnClickListener(){
             @Override
             public void onClick(View v){

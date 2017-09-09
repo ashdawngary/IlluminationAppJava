@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -166,6 +167,9 @@ public class Music_Activity extends AppCompatActivity {
     }
     public void PostMessge(View v, String t, int mode){
         final Snackbar sn = Snackbar.make(v,t,mode);
+        View snackbarView = sn.getView();
+        TextView snackTextView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        snackTextView.setMaxLines(6);
         sn.setAction("Dismiss",new View.OnClickListener(){
             @Override
             public void onClick(View v){

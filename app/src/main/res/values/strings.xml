@@ -2,7 +2,7 @@
     <string name="app_name">Illumination</string>
     <string name="action_settings">Illumination</string>
     <string name="title_activity_tasklist_selector">tasklist_selector</string>
-    <string-array name = "videoNames">
+    <string-array name="videoNames">
         <item>Dog Video #1</item>
         <item>Dog Video #2</item>
     </string-array>
@@ -25,7 +25,7 @@
         <item>Your big opportunity may be right where you are now</item>
         <item></item>
     </string-array>
-    <string-array name = "activities_list">
+    <string-array name="activities_list">
         <item>Imagining you are walking through a meadow</item>
         <item>Discover the therapeutic value of working in the garden</item>
         <item>Volunteer for a good cause</item>
@@ -52,12 +52,12 @@
         <item>Volunteering</item>
     </string-array>
     <string-array name="StoryTitles">
-        <item>Ali the Writer</item>
-        <item>Andrew the Football Player</item>
-        <item>Melissa the Speaker</item>
+        <item>Meet Ali</item>
+        <item>Meet Andrew</item>
+        <item>Meet Melissa</item>
     </string-array>
     <string-array name="faqlist">
-        <item>Disclaimer</item>
+        <item>What is Illumination</item>
         <item>About Neel</item>
         <item>About Srija</item>
         <item>About Trisha</item>

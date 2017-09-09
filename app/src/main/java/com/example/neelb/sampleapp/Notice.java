@@ -34,7 +34,7 @@ public class Notice extends AppCompatActivity {
         getWindow().getDecorView().setBackgroundColor(Color.rgb(255,255,255));
         // Need to Map Something?  Lets HashMap!  We hashmap String -> int since int is the id for the R.Raw file containing <String>
         final HashMap<String,Integer> qtoa = new HashMap<>(); //News flash aparently Hashmap doesnt like "primitives" so rip int
-        qtoa.put("Disclaimer",R.raw.disclaimer); // Check: fill in R.id for Disclaimer. (put in a text file)
+        qtoa.put("What is Illumination",R.raw.disclaimer); // Check: fill in R.id for Disclaimer. (put in a text file)
         qtoa.put("About Trisha",R.raw.abouttrisha); // Check: fill in R.id for author use storymode layout. (put in a text file)
         qtoa.put("About Srija",R.raw.aboutsrija); // Check: fill in R.id for author use storymode layout. (put in a text file)
         qtoa.put("About Neel",R.raw.aboutneel); // Check: fill in R.id for author use storymode layout. (put in a text file)
@@ -46,8 +46,16 @@ public class Notice extends AppCompatActivity {
         questionSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(answerBox == null){
+                    Log.e("AnswerBoxNull","Answer Box is Null! Forcing a deifntion!");
+                    loadAnswerBox();
+                }
                 String selected = (String) parent.getItemAtPosition(position); // This is standard
-                answerBox.setText(readRawTextFile(mycontext,qtoa.get(selected)));
+                Log.i("Notice","Selected: "+selected);
+                int file = qtoa.get(selected);
+                Log.i("Notice","file is at "+file);
+                String c = readRawTextFile(mycontext,file);
+                answerBox.setText(c);
                 Log.i("FAQ","New Question Selected.");
             }
 
@@ -56,6 +64,9 @@ public class Notice extends AppCompatActivity {
 
             }
         });
+    }
+    public void loadAnswerBox(){
+        answerBox = (TextView) findViewById(R.id.qanswer_text);
     }
     public static String readRawTextFile(Context ctx, int resId)
     {

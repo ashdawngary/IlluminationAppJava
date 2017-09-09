@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.MediaController;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import java.io.BufferedReader;
@@ -20,10 +21,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.HashMap;
 
 public class AnimalVideos extends AppCompatActivity {
     public VideoView mVideoView;
     public Context myContext = this;
+    public TextView caption;
+    public HashMap<String,String>  title_to_caption;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,10 @@ public class AnimalVideos extends AppCompatActivity {
             PostMessge(findViewById(android.R.id.content),"Meet each one of these adorable animals and laugh along with their never-ending mischief!", Snackbar.LENGTH_LONG);
             writeToFile("1","activity.txt",myContext);
         }
+        title_to_caption = new HashMap<String,String>();
+        title_to_caption.put("Dog Video #1","Meet Marley, a lovable black lab.");
+        title_to_caption.put("Dog Video #2","Look What Marley Did!");
+        caption = (TextView) findViewById(R.id.animalvideoscaption);
         getWindow().getDecorView().setBackgroundColor(Color.rgb(255,255,255));
         Spinner videoSelector = (Spinner) findViewById(R.id.videoSelect);
         ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter.createFromResource(this, R.array.videoNames,R.layout.quote_spinner_custom ); //android.R.layout.simple_spinner_item
@@ -49,6 +57,7 @@ public class AnimalVideos extends AppCompatActivity {
                         id_to_use = R.raw.dogs1;
                         break;
                 }
+                caption.setText(title_to_caption.get(selected));
                 Uri uri = Uri.parse("android.resource://" + getPackageName() + "/"
                         + id_to_use);
                 mVideoView.setVideoURI(uri);
@@ -68,6 +77,9 @@ public class AnimalVideos extends AppCompatActivity {
     }
     public void PostMessge(View v, String t, int mode){
         final Snackbar sn = Snackbar.make(v,t,mode);
+        View snackbarView = sn.getView();
+        TextView snackTextView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        snackTextView.setMaxLines(6);
         sn.setAction("Dismiss",new View.OnClickListener(){
             @Override
             public void onClick(View v){

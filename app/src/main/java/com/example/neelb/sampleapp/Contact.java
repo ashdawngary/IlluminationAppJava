@@ -16,6 +16,8 @@ import android.net.Uri;
 import java.io.*;
 import android.provider.ContactsContract;
 import android.app.Activity;
+import android.widget.TextView;
+
 public class Contact extends AppCompatActivity {
     String firstcontact;
     String secondcontact;
@@ -23,9 +25,12 @@ public class Contact extends AppCompatActivity {
     int editcontactNumber;
     @Override
     protected void onCreate(final Bundle savedInstanceState){
-        if(readFromFile(this,"helpline.txt").equals("1")){
+        if(readFromFile(this,"helpline.txt").equals("0")){
             PostMessge(findViewById(android.R.id.content),"If you feel helpless and think you are in an emergency, you MUST use either of these helplines. The trained professionals on the other end want to help you and will not judge you and your feelings.",Snackbar.LENGTH_LONG);
             writeToFile("1","helpline.txt",this);
+        }
+        else{
+            Log.i("Sysout","Already seen Contact.java notificaiton: "+readFromFile(this,"helpline.txt"));
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
@@ -209,6 +214,9 @@ public class Contact extends AppCompatActivity {
     }
     public void PostMessge(View v, String t, int mode){
         final Snackbar sn = Snackbar.make(v,t,mode);
+        View snackbarView = sn.getView();
+        TextView snackTextView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        snackTextView.setMaxLines(6);
         sn.setAction("Dismiss",new View.OnClickListener(){
             @Override
             public void onClick(View v){

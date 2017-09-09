@@ -5,11 +5,19 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class MainScreenMedium extends AppCompatActivity {
     public final Context mycontext = this;
@@ -19,6 +27,7 @@ public class MainScreenMedium extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen_medium);
         getWindow().getDecorView().setBackgroundColor(Color.rgb(220,220,220));
         /*TODO: Write Up All Intents for Medium Screen. Use "mycontext" in case we need to change.*/
+        final Intent transition = new Intent(mycontext,TransitionActivity.class);
         final Intent noticeIntent = new Intent(mycontext,Notice.class);
         final Intent storiesIntent = new Intent(mycontext,Stories.class);
         final Intent feedbackIntent = new Intent(mycontext,GPSActivity.class);
@@ -44,7 +53,8 @@ public class MainScreenMedium extends AppCompatActivity {
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(noticeIntent);
+                writeToFile("About Illumination","transitiondisplay.txt",mycontext);
+                startActivity(transition);
             }
         });
         feedback.setOnClickListener(new View.OnClickListener() {
@@ -61,28 +71,79 @@ public class MainScreenMedium extends AppCompatActivity {
         });
         mediumTaskList.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {startActivity(tasklistIntent);
+            public void onClick(View v) {
+
+                writeToFile("Activities","transitiondisplay.txt",mycontext);
+                startActivity(transition);
             }
         });
         deepbreathing.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {startActivity(deepbreathingIntent);
+            public void onClick(View v) {
+                writeToFile("Deep Breathing","transitiondisplay.txt",mycontext);
+                startActivity(transition);
             }
         });
         stories.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {startActivity(storiesIntent);
+            public void onClick(View v) {
+
+                writeToFile("Stories","transitiondisplay.txt",mycontext);
+                startActivity(transition);
             }
         });
         peertexting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {startActivity(contactIntent);
+            public void onClick(View v) {
+                startActivity(contactIntent);
             }
         });
         videos.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {startActivity(animalVideos);
+            public void onClick(View v) {
+
+                writeToFile("Animal Videos","transitiondisplay.txt",mycontext);
+                startActivity(transition);
             }
         });
+    }
+    private String readFromFile(Context context, String textfile) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput(textfile);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
+    private void writeToFile(String data,String textfile,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(textfile, Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
     }
 }
