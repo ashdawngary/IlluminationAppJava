@@ -7,9 +7,9 @@
         <item>Dog Video #2</item>
     </string-array>
     <string-array name="inspirationalquotes">
-        <item>When it is darkest, we can see the stars.     - Ralph Waldo Emerson</item>
+        <item>When it is darkest, we can see the stars. - Ralph Waldo Emerson</item>
         <item>Place your hand over your heart, can you feel it? That is called purpose. You’re alive for a reason so don’t ever give up.  - Unknown</item>
-        <item>Never never never give up.    - Winston Churchill</item>
+        <item>Never never never give up. - Winston Churchill</item>
         <item>When the whole world is silent, even one voice becomes powerful. - Malala </item>
         <item>The world is a better place with you in it. - Unknown </item>
         <item>Feelings are just visitors. Let them come and go</item>
@@ -26,27 +26,32 @@
         <item></item>
     </string-array>
     <string-array name="activities_list">
-        <item>Imagining you are walking through a meadow</item>
-        <item>Discover the therapeutic value of working in the garden</item>
+        <item>Try guided imagery</item>
+        <item>Garden for an hour</item>
         <item>Volunteer for a good cause</item>
         <item>Use a tension-relief roller</item>
-        <item>Decrease your workload</item>
-        <item>Call and talk to a friend</item>
-        <item>Get polarity therapy</item>
-        <item>Do a random act of kindness</item>
+        <item>Prioritize your workload</item>
+        <item>Call a friend </item>
         <item>Relish a favorite memory</item>
-        <item>Step outside and savor the sunlight</item>
-        <item>Take a nap</item>
-        <item>Do progressive muscle relaxation, starting with the feet and moving toward the head</item>
+        <item>Do an act of kindness</item>
+        <item>Take a 20 minute nap</item>
+        <item>Do progressive muscle relaxation</item>
         <item>Stretch for a few minutes</item>
-        <item>List all the things you love about yourself</item>
-        <item>Forgive yourself for the things you \"think\" you\'ve done wrong -- move on</item>
+        <item>List things you love</item>
+        <item>Forgive yourself for the past</item>
+        <item>Pause: focus in on the moment</item>
         <item>Put on your favorite outfit</item>
-        <item>Spend time with family over a good meal</item>
+        <item>Have a meal with family</item>
         <item>Create handmade thank you notes</item>
-        <item>Drink a cup of relaxation-inducing herbal tea, such as chamomile</item>
-        <item>Look back through pictures of happy memories -- family vacations and special events -- and focus on how happy you were</item>
-    </string-array>
+        <item>Drink some tea</item>
+        <item>Look through old family photos</item>
+        <item>Look up and do laughter yoga</item>
+        <item>Chew some gum</item>
+        <item>Hug someone you love</item>
+        <item>Acknowledge and release your stress</item>
+        <item>Identify something good that happened</item>
+        <item>List 3 things you\'re grateful for</item>
+   </string-array>
     <string-array name="activities_catagories">
         <item>Activities For You</item>
         <item>Volunteering</item>
@@ -57,10 +62,7 @@
         <item>Meet Melissa</item>
     </string-array>
     <string-array name="faqlist">
-        <item>What is Illumination</item>
-        <item>About Neel</item>
-        <item>About Srija</item>
-        <item>About Trisha</item>
-        <item>Future Works</item>
+        <item>About Illumination</item>
+        <item>Future Updates</item>
     </string-array>
 </resources>

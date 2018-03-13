@@ -2,12 +2,12 @@ We want to make this app better!
 
 In the future, we will be implementing alot more ideas such as
 
--- Better UI
--- Machine Learning for Diagnosing People(Sentiment Analysis)
--- More Contacts
--- Customizable Activitylists!
+- Bettering user-interface with graphics and animation
+- Incorporating Machine learning
+- Allowing for more contacts
+- Customizing Activity Lists
+- Adding more helpful resources
 
-==============================================================
 
 
 Is there something that we missed?  Go to the homescreen and click on "Give us Feedback!"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.neelb.sampleapp.favorite_color_picker">
+    tools:context="com.IlluminationJava.neelb.Illumination.favorite_color_picker">
 
     <SeekBar
         android:id="@+id/blueSeekBar"

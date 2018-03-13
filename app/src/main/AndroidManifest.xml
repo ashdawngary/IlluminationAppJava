@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.neelb.sampleapp">
+    package="com.IlluminationJava.neelb.Illumination">
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature android:name="android.hardware.location.gps" />
 
@@ -16,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Mainscreenactivity"
+            android:name="com.IlluminationJava.neelb.Illumination.Mainscreenactivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -25,24 +23,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainScreenGood" />
-        <activity android:name=".Notice" />
-        <activity android:name=".Contact" />
-        <activity android:name=".TaskList" />
-        <activity android:name=".Stories" />
-        <activity android:name=".Music_Activity" />
-        <activity android:name=".AnimalVideos" />
-        <activity android:name=".favorite_color_picker" />
-        <activity android:name=".GPSActivity" />
-        <activity android:name=".FirstMeetUp" />
-        <activity android:name=".tasklist_selector" />
-        <activity android:name=".tasklistv2" />
-        <activity android:name=".QuoteChooser" />
-        <activity android:name=".MainScreenMedium" />
-        <activity android:name=".DeepBreathing" />
-        <activity android:name=".MainScreenBad" />
-        <activity android:name=".TransitionActivity" />
-        <activity android:name=".helpline"></activity>
+        <activity android:name="com.IlluminationJava.neelb.Illumination.MainScreenGood" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.Notice" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.Contact" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.TaskList" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.Stories" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.Music_Activity" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.AnimalVideos" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.favorite_color_picker" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.GPSActivity" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.FirstMeetUp" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.tasklist_selector" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.tasklistv2" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.QuoteChooser" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.MainScreenMedium" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.DeepBreathing" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.MainScreenBad" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.TransitionActivity" />
+        <activity android:name="com.IlluminationJava.neelb.Illumination.helpline"></activity>
     </application>
 
 </manifest>
